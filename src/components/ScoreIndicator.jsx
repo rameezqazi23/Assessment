@@ -2,19 +2,39 @@ import React from "react";
 
 const ScoreIndicator = ({ current, total }) => {
   return (
-    <>
-      <p className="text-center text-gray-600 mt-4 text-lg font-medium">
+    <div>
+      <p
+        style={{
+          textAlign: "center",
+          color: "#4B5563",
+          marginTop: "16px",
+          fontSize: "18px",
+          fontWeight: "500",
+        }}
+      >
         Score: {((current / total) * 100).toFixed(1)}%
       </p>
-      <div className="relative w-full h-3 bg-gray-300 rounded-full overflow-hidden mb-6">
+
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "25px",
+          backgroundColor: "#D1D5DB",
+          overflow: "hidden",
+          marginBottom: "24px",
+        }}
+      >
         <div
-          className="h-full bg-blue-500 transition-all duration-300"
           style={{
-            width: `${((current + 1) / total) * 100}%`,
+            height: "100%",
+            backgroundColor: "#3B82F6",
+            width: `${((current) / total) * 100}%`,
+            transition: "width 0.3s ease-in-out",
           }}
         ></div>
       </div>
-    </>
+    </div>
   );
 };
 

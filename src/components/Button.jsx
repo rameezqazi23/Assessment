@@ -2,19 +2,31 @@ import React from "react";
 
 const Button = ({ text, onClick, disabled, selectedOption }) => {
   return (
-    <>
-      <button
-        className={`mt-6 w-full p-3 rounded-md text-lg font-bold transition-all ${
-          selectedOption
-            ? "bg-green-500 hover:bg-green-600 text-white"
-            : "bg-gray-300 text-gray-500 cursor-not-allowed"
-        }`}
-        onClick={onClick}
-        disabled={disabled}
-      >
-        {text}
-      </button>
-    </>
+    <button
+      style={{
+        marginTop: "24px",
+        width: "100%",
+        padding: "12px",
+        border: "none",
+        borderRadius: "8px",
+        fontSize: "18px",
+        fontWeight: "bold",
+        transition: "background-color 0.3s ease-in-out",
+        backgroundColor: selectedOption ? "#22C55E" : "#D1D5DB",
+        color: selectedOption ? "#FFFFFF" : "#6B7280",
+        cursor: disabled ? "not-allowed" : "pointer",
+      }}
+      onClick={onClick}
+      disabled={disabled}
+      onMouseOver={(e) => {
+        if (selectedOption) e.target.style.backgroundColor = "#16A34A";
+      }}
+      onMouseOut={(e) => {
+        if (selectedOption) e.target.style.backgroundColor = "#22C55E";
+      }}
+    >
+      {text}
+    </button>
   );
 };
 

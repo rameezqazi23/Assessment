@@ -1,3 +1,148 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  padding: 16px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.quiz-container {
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.quiz-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.quiz-container p {
+  font-size: 18px;
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
+.difficulty-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.difficulty-star {
+  cursor: pointer;
+  transition: color 0.2s;
+  margin: 0 4px;
+}
+
+.difficulty-star.selected {
+  color: #facc15;
+}
+
+.difficulty-star.unselected {
+  color: #d1d5db;
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.button.start-enabled {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.button.start-enabled:hover {
+  background-color: #2563eb;
+}
+
+.button.start-disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.question-container {
+  margin-bottom: 16px;
+}
+
+.question-container h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.category-text {
+  color: #4b5563;
+  font-size: 16px;
+}
+
+.answer-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 10px 0 10px 0;
+  
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #fafafa;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.answer-button:hover {
+  background-color: #e5e7eb;
+}
+
+.answer-button.selected {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.next-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+  background-color: #2aac1f;
+  color: white;
+}
+
+.next-button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.next-button:hover:enabled {
+  background-color: #218f17;
+}
+
+.score-container {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #4b5563;
+}

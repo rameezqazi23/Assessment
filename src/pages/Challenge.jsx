@@ -3,6 +3,7 @@ import questionsData from "../questions.json";
 import Progress from "../components/Progress";
 import Button from "../components/Button";
 import ScoreIndicator from "../components/ScoreIndicator";
+import "../index.css";
 
 const Quiz = () => {
   const [quizStarted, setQuizStarted] = useState(false);
@@ -68,24 +69,18 @@ const Quiz = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="quiz-container">
       {!quizStarted ? (
-        <div className="bg-white shadow-lg rounded-lg p-6 max-w-lg w-full text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Welcome to the Challenge
-          </h2>
-          <p className="text-lg text-gray-600 mb-4">
-            Select a difficulty level to begin:
-          </p>
+        <div>
+          <h2>Welcome to the Challenge</h2>
+          <p>Select a difficulty level to begin:</p>
 
-          <div className="flex justify-center mb-6 space-x-2 text-3xl">
+          <div className="difficulty-container">
             {[1, 2, 3].map((level) => (
               <span
                 key={level}
-                className={`cursor-pointer transition-colors ${
-                  selectedDifficulty >= level
-                    ? "text-yellow-500"
-                    : "text-gray-300"
+                className={`difficulty-star ${
+                  selectedDifficulty >= level ? "selected" : "unselected"
                 }`}
                 onClick={() => handleDifficultySelect(level)}
               >
@@ -95,10 +90,8 @@ const Quiz = () => {
           </div>
 
           <button
-            className={`w-full p-3 rounded-md text-lg font-medium transition-all ${
-              selectedDifficulty
-                ? "bg-blue-500 text-white hover:bg-blue-600"
-                : "bg-gray-300 cursor-not-allowed"
+            className={`button ${
+              selectedDifficulty ? "start-enabled" : "start-disabled"
             }`}
             onClick={startQuiz}
             disabled={!selectedDifficulty}
@@ -107,25 +100,22 @@ const Quiz = () => {
           </button>
         </div>
       ) : (
-        <div className="bg-white shadow-lg rounded-lg p-6 max-w-lg w-full">
+        <div>
           <Progress
             current={currentQuestion + 1}
             total={filteredQuestions.length}
           />
-
-          <div className="mb-4 text-center">
-            <h2 className="text-3xl font-bold text-gray-800">
+          <div className="question-container">
+            <h2>
               Question {currentQuestion + 1} / {filteredQuestions.length}
             </h2>
 
-            <div className="flex justify-center mb-2 text-2xl">
+            <div className="difficulty-container">
               {[1, 2, 3].map((level) => (
                 <span
                   key={level}
-                  className={`${
-                    selectedDifficulty >= level
-                      ? "text-yellow-500"
-                      : "text-gray-300"
+                  className={`difficulty-star ${
+                    selectedDifficulty >= level ? "selected" : "unselected"
                   }`}
                 >
                   &#9733;
@@ -133,26 +123,24 @@ const Quiz = () => {
               ))}
             </div>
 
-            <p className="text-gray-600">
+            <p className="category-text">
               {filteredQuestions[currentQuestion].category}
             </p>
           </div>
 
-          <p className="text-lg font-semibold text-gray-700 mb-6">
+          <p className="question-text">
             {filteredQuestions[currentQuestion].question}
           </p>
 
-          <div className="grid gap-3">
+          <div className="answer-options">
             {filteredQuestions[currentQuestion].incorrect_answers
               .concat(filteredQuestions[currentQuestion].correct_answer)
               .sort()
               .map((option, index) => (
                 <button
                   key={index}
-                  className={`w-full p-3 rounded-md border text-lg font-medium transition-all ${
-                    selectedOption === option
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-100 hover:bg-gray-200"
+                  className={`answer-button ${
+                    selectedOption === option ? "selected" : ""
                   }`}
                   onClick={() => handleOptionClick(option)}
                 >
@@ -160,7 +148,6 @@ const Quiz = () => {
                 </button>
               ))}
           </div>
-
           <Button
             onClick={handleNextQuestion}
             disabled={!selectedOption}
@@ -171,12 +158,9 @@ const Quiz = () => {
             }
             selectedOption={selectedOption}
           />
-          <div className="my-10">
-            {/* <p className="text-center text-gray-600 mt-4 text-lg font-medium">
-              Score: {((score / filteredQuestions.length) * 100).toFixed(1)}%
-            </p> */}
+
+          <div className="score-container">
             <ScoreIndicator current={score} total={filteredQuestions.length} />
-            {/* <Progress current={score} total={filteredQuestions.length} /> */}
           </div>
         </div>
       )}
