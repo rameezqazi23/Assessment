@@ -117,28 +117,6 @@ body {
   color: white;
 }
 
-.next-button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 500;
-  transition: background-color 0.2s;
-  cursor: pointer;
-  border: none;
-  background-color: #2aac1f;
-  color: white;
-}
-
-.next-button:disabled {
-  background-color: #d1d5db;
-  cursor: not-allowed;
-}
-
-.next-button:hover:enabled {
-  background-color: #218f17;
-}
-
 .score-container {
   margin-top: 40px;
   text-align: center;
